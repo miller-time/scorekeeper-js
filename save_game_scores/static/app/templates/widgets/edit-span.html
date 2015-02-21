@@ -1,0 +1,9 @@
+<span class="edit-span-container">
+    <span ng-show="mode === 'view'" class="edit-span" ng-click="mode = 'edit'">
+        {{spanContents}}
+    </span>
+    <input ng-show="mode === 'edit'"
+        ng-model="spanContents"
+        ng-keyup="keyUpHandler($event)"
+        ng-blur="mode = 'view'">
+</span>
