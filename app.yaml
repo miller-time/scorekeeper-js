@@ -1,0 +1,14 @@
+application: save-game-scores
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: .*
+  script: save_game_scores.app
+
+libraries:
+- name: jinja2
+  version: 2.6

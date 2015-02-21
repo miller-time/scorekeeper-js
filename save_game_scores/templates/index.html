@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+  <title>Scorekeeper</title>
+</head>
+<body>
+  <p>
+    Logged in as: {{username}}
+    {% if admin %}
+    (admin)
+    {% endif %}
+  </p>
+  <a href="{{log_in_out_url}}">{{log_in_out_text}}</a>
+</body>
+</html>
