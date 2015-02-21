@@ -3,6 +3,7 @@
 angular.module('scorekeeper', [
     'ui.bootstrap',
     'ui.router',
+    'scorekeeperWidgets',
     'scorekeeperViews'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
@@ -12,14 +13,14 @@ angular.module('scorekeeper', [
     $stateProvider.state('home', {
         url: '/',
         controller: 'HomeController',
-        templateUrl: '/static/app/views/home.html'
+        templateUrl: '/static/app/templates/views/home.html'
     }).state('profile', {
         url: '/profile',
-        templateUrl: '/static/app/views/profile.html'
+        templateUrl: '/static/app/templates/views/profile.html'
     }).state('game', {
         url: '/game',
         controller: 'GameController',
-        templateUrl: '/static/app/views/game.html'
+        templateUrl: '/static/app/templates/views/game.html'
     });
 
 });
