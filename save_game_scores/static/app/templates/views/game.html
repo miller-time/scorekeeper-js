@@ -4,7 +4,12 @@
     </p>
     <p>Players:
         <ul>
-            <li ng-repeat="player in game.players">{{player.name}}</li>
+            <li ng-repeat="player in game.players">
+                <ul>
+                    <li>{{player.name}}</li>
+                    <li>{{player.points}} <button ng-click="player.addPoints(1)">Add Point</button></li>
+                </ul>
+            </li>
         </ul>
     </p>
     <form ng-if="game">
