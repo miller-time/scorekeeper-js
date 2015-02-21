@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('scorekeeper', []);
+angular.module('scorekeeper', ['ui.bootstrap']);
