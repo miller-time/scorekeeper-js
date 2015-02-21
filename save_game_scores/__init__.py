@@ -22,7 +22,7 @@ def index():
         log_in_out_url = users.create_logout_url(request.url)
     else:
         log_in_out_text = "Log in"
-        log_in_out_url = users.create_login_url(request.url)
+        log_in_out_url = users.create_login_url(request.url) + '%23%2Fprofile'
     return render_template(
         "index.html",
         username=username,
