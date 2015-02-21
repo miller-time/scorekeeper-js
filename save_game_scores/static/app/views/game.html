@@ -2,4 +2,18 @@
     <p>
         Keeping score for {{game.title}}!
     </p>
+    <p>Players:
+        <ul>
+            <li ng-repeat="player in game.players">{{player.name}}</li>
+        </ul>
+    </p>
+    <form ng-if="game">
+        <div class="form-group">
+            <label for="new-player">New Player:</label>
+            <input type="text" id="new-player" class="form-control" ng-model="newPlayer.name">
+        </div>
+        <button class="btn btn-default" ng-disabled="!newPlayer.name" ng-click="addPlayer(newPlayer.name)">
+            Add
+        </button>
+    </form>
 </div>
