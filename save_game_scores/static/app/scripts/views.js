@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('scorekeeperViews', [
+    'ui.bootstrap',
     'ui.router',
-    'scorekeeperWidgets'
+    'scorekeeperWidgets',
+    'scorekeeperModals'
 ]);
 
 angular.module('scorekeeperViews')
@@ -11,7 +13,7 @@ angular.module('scorekeeperViews')
             $state.go('game');
         };
     })
-    .controller('GameController', function($scope, $timeout) {
+    .controller('GameController', function($scope, $timeout, $modal) {
         $scope.game = new Game('Phase 10');
 
         $scope.newPlayer = {};
@@ -22,6 +24,25 @@ angular.module('scorekeeperViews')
             } else {
                 throw 'No game to add a player to!';
             }
+        };
+
+        $scope.addPoints = function(player) {
+            player.addPoints(player.pointsToAdd);
+            player.pointsToAdd = '';
+        };
+
+        $scope.addInfo = function(player) {
+            $modal.open({
+                controller: 'AddPlayerInfoModalController',
+                templateUrl: '/static/app/templates/modals/add-player-info.html',
+                resolve: {
+                    player: function() {
+                        return player;
+                    }
+                }
+            }).result.then(function(attrVal) {
+                player.setCustomAttribute(attrVal[0], attrVal[1]);
+            });
         };
 
         /*

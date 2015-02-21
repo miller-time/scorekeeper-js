@@ -11,6 +11,7 @@ window.Player = function(name, score) {
         score: score
     }];
     this.metadata = {};
+    this.metadataKeys = [];
 };
 
 window.Player.prototype.addPoints = function(delta) {
@@ -28,5 +29,9 @@ window.Player.prototype.addPoints = function(delta) {
     Players can have additional attributes like "phase" or "level"
 */
 window.Player.prototype.setCustomAttribute = function(attribute, value) {
-    this.metadata.attribute = value;
+    if (this.metadataKeys.indexOf(attribute) === -1) {
+        this.metadataKeys.push(attribute);
+        this.metadataKeys.sort();
+    }
+    this.metadata[attribute] = value;
 };

@@ -1,24 +1,31 @@
-<div class="jumbotron">
-    <p>
-        Keeping score for <edit-span span-contents="game.title"></edit-span>!
-    </p>
-    <p>Players:
-        <ul>
-            <li ng-repeat="player in game.players">
-                <ul>
-                    <li>{{player.name}}</li>
-                    <li>{{player.score}} <button ng-click="player.addPoints(1)">Add Point</button></li>
-                </ul>
-            </li>
-        </ul>
-    </p>
-    <form ng-if="game">
-        <div class="form-group">
-            <label for="new-player">New Player:</label>
-            <input type="text" id="new-player" class="form-control" ng-model="newPlayer.name">
+<h1><edit-span span-contents="game.title"></edit-span></h1>
+<div class="container-fluid score-table">
+    <div class="player-col" ng-repeat="player in game.players">
+        <h3>{{player.name}}</h3>
+        <hr>
+        <div ng-repeat="attr in player.metadataKeys" class="form-group">
+            <label>{{attr}}</label>
+            <edit-span span-contents="player.metadata[attr]"></edit-span>
         </div>
-        <button class="btn btn-default" ng-disabled="!newPlayer.name" ng-click="addPlayer(newPlayer.name)">
-            Add
-        </button>
-    </form>
+        <hr ng-if="player.metadataKeys.length >= 1">
+        <!-- @TODO: score history -->
+        {{player.score}}
+        <br>
+        <div class="form-group">
+            <input type="number" class="form-control" ng-model="player.pointsToAdd">
+            <button class="btn btn-default" ng-disabled="!player.pointsToAdd" ng-click="addPoints(player)">
+                Add Points
+            </button>
+        </div>
+        <button class="btn btn-default" ng-click="addInfo(player)">Add Other Info</button>
+    </div>
 </div>
+<form ng-if="game">
+    <div class="form-group">
+        <label for="new-player">New Player:</label>
+        <input type="text" id="new-player" class="form-control" ng-model="newPlayer.name">
+    </div>
+    <button class="btn btn-default" ng-disabled="!newPlayer.name" ng-click="addPlayer(newPlayer.name)">
+        Add
+    </button>
+</form>

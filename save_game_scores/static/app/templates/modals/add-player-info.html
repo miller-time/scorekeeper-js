@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{player.name}}</h3>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label for="new-attr">New Attribute</label>
+        <input type="text" id="new-attr" ng-model="player.attrToAdd">
+        <label for="new-val">Value</label>
+        <input type="text" id="new-val" ng-model="player.valToAdd">
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="!player.attrToAdd || !player.valToAdd">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

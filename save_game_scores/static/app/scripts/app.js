@@ -4,6 +4,7 @@ angular.module('scorekeeper', [
     'ui.bootstrap',
     'ui.router',
     'scorekeeperWidgets',
+    'scorekeeperModals',
     'scorekeeperViews'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
