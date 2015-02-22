@@ -14,21 +14,11 @@ them with friends.
 ### Game
 
  * game type
- * name
- * timestamps
- * change history?
- * add players
 
 ### Game Type
 
  * custom rules (e.g. hand and foot rounds, phase 10 phases)
  * golf mode
-
-### Player
-
- * name
- * score
- * score history (0 + 4 | 4 + 3 | 7)
 
 ### Views
 
