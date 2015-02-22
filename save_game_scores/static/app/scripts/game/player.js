@@ -56,3 +56,11 @@ window.Player.prototype.toJSON = function() {
 window.Player.prototype.toString = function() {
     return JSON.stringify(this.toJSON(), null, 4);
 };
+
+window.Player.prototype.load = function(json) {
+    this.name = json.name;
+    this.score = json.score;
+    this.scoreHistory = json.scoreHistory;
+    this.metadata = json.metadata;
+    this.metadataKeys = json.metadataKeys;
+};

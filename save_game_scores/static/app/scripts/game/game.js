@@ -23,3 +23,12 @@ window.Game.prototype.toJSON = function() {
 window.Game.prototype.toString = function() {
     return JSON.stringify(this.toJSON(), null, 4);
 };
+
+window.Game.prototype.load = function(json) {
+    this.title = json.title;
+    angular.forEach(json.players, function(playerData) {
+        var player = new window.Player();
+        player.load(playerData);
+        this.players.push(player);
+    });
+};
