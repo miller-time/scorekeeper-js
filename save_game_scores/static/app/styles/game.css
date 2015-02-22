@@ -4,6 +4,7 @@
 
 input {
     font-family: 'Play', sans-serif;
+    max-width: 100%;
 }
 
 body {
@@ -27,6 +28,10 @@ h1 {
     width: 200px;
 }
 
+.score-table {
+    padding-top: 15px;
+}
+
 .score-table .player-col {
     margin-left: 5px;
     margin-right: 5px;
@@ -35,6 +40,31 @@ h1 {
     width: 10%;
     min-width: 160px;
     box-shadow: #888 1px 1px 1px 1px;
+}
+
+@media (max-width: 600px) {
+    .title {
+        width: 100%;
+        float: none;
+    }
+
+    .new-player-container {
+        float: none;
+    }
+
+    #new-player {
+        width: calc(100% - 50px);
+    }
+
+    .score-table {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .score-table .player-col {
+        padding: 9px;
+        min-width: 153px;
+    }
 }
 
 .score-table .player-col h3 {
@@ -65,7 +95,7 @@ h1 {
 }
 
 .score-table .player-col input.points {
-    max-width: calc(100% - 54px);
+    max-width: calc(100% - 58px);
 }
 
 .score-table .player-col .points {
