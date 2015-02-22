@@ -11,8 +11,8 @@ class SavedGame(ndb.Model):
             'user_id': self.user_id,
             'game_id': self.key.id(),
             'game_data': self.game_data,
-            'created': self.created.isostring(),
-            'updated': self.updated.isostring()
+            'created': self.created.isoformat(),
+            'updated': self.updated.isoformat()
         }
 
     @classmethod

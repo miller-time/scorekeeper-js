@@ -30,3 +30,5 @@ def index():
         log_in_out_url=log_in_out_url,
         log_in_out_text=log_in_out_text
     )
+
+import save_game_scores.api

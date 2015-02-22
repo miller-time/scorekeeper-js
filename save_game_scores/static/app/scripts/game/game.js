@@ -1,6 +1,8 @@
 'use strict';
 
 window.Game = function(title) {
+    /* A game has a gameId once it has been saved to the data store */
+    this.gameId = null;
     this.title = title;
     this.players = [];
 };

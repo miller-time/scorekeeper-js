@@ -3,6 +3,7 @@
 angular.module('scorekeeper', [
     'ui.bootstrap',
     'ui.router',
+    'scorekeeperServices',
     'scorekeeperWidgets',
     'scorekeeperModals',
     'scorekeeperViews'

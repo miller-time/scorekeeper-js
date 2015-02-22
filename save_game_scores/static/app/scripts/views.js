@@ -13,7 +13,7 @@ angular.module('scorekeeperViews')
             $state.go('game');
         };
     })
-    .controller('GameController', function($scope, $timeout, $modal) {
+    .controller('GameController', function($scope, $timeout, $modal, savedGameApi) {
         $scope.game = new Game('Phase 10');
 
         $scope.newPlayer = {};
@@ -61,7 +61,13 @@ angular.module('scorekeeperViews')
                 $timeout.cancel(gameDataChangeTimeout);
             }
             gameDataChangeTimeout = $timeout(function() {
-                console.log('game data change detected');
+                if ($scope.game.gameId) {
+                    savedGameApi.updateSavedGame($scope.game.gameId, $scope.game.toString());
+                } else {
+                    savedGameApi.saveGame($scope.game.toString()).then(function(gameId) {
+                        $scope.game.gameId = gameId;
+                    });
+                }
             }, 750);
         }, true);
     });
