@@ -18,6 +18,7 @@ angular.module('scorekeeper', [
         templateUrl: '/static/app/templates/views/home.html'
     }).state('profile', {
         url: '/profile',
+        controller: 'ProfileController',
         templateUrl: '/static/app/templates/views/profile.html'
     }).state('game', {
         url: '/game',

@@ -8,13 +8,39 @@ angular.module('scorekeeperViews', [
 ]);
 
 angular.module('scorekeeperViews')
-    .controller('HomeController', function($scope, $state) {
+    .filter('dateFromString', function() {
+        return function(input) {
+            return new Date(input).toString();
+        };
+    })
+    .controller('HomeController', function($scope, $rootScope, $state) {
         $scope.newGame = function() {
+            $rootScope.game = new Game('Click here to set game title');
             $state.go('game');
         };
     })
-    .controller('GameController', function($scope, $timeout, $modal, savedGameApi) {
-        $scope.game = new Game('Phase 10');
+    .controller('ProfileController', function($scope, $rootScope, $state, savedGameApi) {
+        savedGameApi.getSavedGames().then(function(savedGames) {
+            $scope.savedGames = [];
+            angular.forEach(savedGames, function(savedGame) {
+                var game = new window.Game();
+                game.load(JSON.parse(savedGame.game_data));
+                game.gameId = savedGame.game_id;
+                game.updated = new Date(savedGame.updated);
+                game.playerList = game.players.map(function(player) {
+                    return player.name;
+                }).join(', ');
+                $scope.savedGames.push(game);
+            });
+        });
+
+        $scope.playGame = function(game) {
+            $rootScope.game = game;
+            $state.go('game');
+        };
+    })
+    .controller('GameController', function($scope, $rootScope, $timeout, $modal, savedGameApi) {
+        $scope.game = $rootScope.game || new Game('Click here to set game title');
 
         $scope.newPlayer = {};
         $scope.addPlayer = function(name) {

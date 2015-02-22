@@ -1,5 +1,8 @@
-<div class="jumbotron">
+<div class="well" ng-repeat="game in savedGames">
     <p>
-        Here's your Profile page!
+        <h3>{{game.title}}</h3>
+        <small>{{game.updated | date:'medium'}}</small>
     </p>
+    <p>{{game.playerList}}</p>
+    <button class="btn btn-primary" ng-click="playGame(game)">Play</button>
 </div>

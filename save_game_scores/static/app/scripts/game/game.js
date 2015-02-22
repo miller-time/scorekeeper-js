@@ -27,10 +27,11 @@ window.Game.prototype.toString = function() {
 };
 
 window.Game.prototype.load = function(json) {
-    this.title = json.title;
+    var self = this;
+    self.title = json.title;
     angular.forEach(json.players, function(playerData) {
         var player = new window.Player();
         player.load(playerData);
-        this.players.push(player);
+        self.players.push(player);
     });
 };
