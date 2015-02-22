@@ -16,12 +16,14 @@
     <div class="player-col" ng-repeat="player in game.players">
         <h3><edit-span span-contents="player.name"></edit-span></h3>
         <hr>
-        <div ng-repeat="history in player.scoreHistory"
-            ng-if="player.score !== history.score">
-            <s class="score history">{{history.score}}</s>
+        <div collapse="player.collapseHistory">
+            <div ng-repeat="history in player.scoreHistory"
+                ng-if="player.score !== history.score">
+                <s class="score history">{{history.score}}</s>
+            </div>
         </div>
 
-        <div class="score">{{player.score}}</div>
+        <div class="score" ng-click="player.collapseHistory = !player.collapseHistory">{{player.score}}</div>
         <br>
         <div class="form-group">
             <span class="glyphicon glyphicon-plus points"></span>
