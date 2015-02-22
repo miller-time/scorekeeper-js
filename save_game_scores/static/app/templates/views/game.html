@@ -1,31 +1,42 @@
-<h1><edit-span span-contents="game.title"></edit-span></h1>
+<h1 class="title"><edit-span span-contents="game.title"></edit-span></h1>
+<div ng-if="game" class="new-player-container">
+    <input type="text"
+        id="new-player"
+        class="form-control pull-left"
+        ng-model="newPlayer.name"
+        placeholder="Add Player">
+    <button class="btn btn-default pull-left" ng-disabled="!newPlayer.name" ng-click="addPlayer(newPlayer.name)">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+</div>
+
+<div class="clearfix"></div>
+
 <div class="container-fluid score-table">
     <div class="player-col" ng-repeat="player in game.players">
-        <h3>{{player.name}}</h3>
+        <h3><edit-span span-contents="player.name"></edit-span></h3>
+        <hr>
+        <div ng-repeat="history in player.scoreHistory"
+            ng-if="player.score !== history.score">
+            <s class="score history">{{history.score}}</s>
+        </div>
+
+        <div class="score">{{player.score}}</div>
+        <br>
+        <div class="form-group">
+            <span class="glyphicon glyphicon-plus points"></span>
+            <input type="number" class="form-control points" ng-model="player.pointsToAdd">
+            <button class="btn btn-default" ng-disabled="!player.pointsToAdd" ng-click="addPoints(player)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </button>
+        </div>
         <hr>
         <div ng-repeat="attr in player.metadataKeys" class="form-group">
             <label>{{attr}}</label>
             <edit-span span-contents="player.metadata[attr]"></edit-span>
         </div>
-        <hr ng-if="player.metadataKeys.length >= 1">
-        <!-- @TODO: score history -->
-        {{player.score}}
-        <br>
-        <div class="form-group">
-            <input type="number" class="form-control" ng-model="player.pointsToAdd">
-            <button class="btn btn-default" ng-disabled="!player.pointsToAdd" ng-click="addPoints(player)">
-                Add Points
-            </button>
-        </div>
-        <button class="btn btn-default" ng-click="addInfo(player)">Add Other Info</button>
+        <button class="btn btn-default btn-sm" ng-click="addInfo(player)">
+            <span class="glyphicon glyphicon-tags"></span>
+        </button>
     </div>
 </div>
-<form ng-if="game">
-    <div class="form-group">
-        <label for="new-player">New Player:</label>
-        <input type="text" id="new-player" class="form-control" ng-model="newPlayer.name">
-    </div>
-    <button class="btn btn-default" ng-disabled="!newPlayer.name" ng-click="addPlayer(newPlayer.name)">
-        Add
-    </button>
-</form>

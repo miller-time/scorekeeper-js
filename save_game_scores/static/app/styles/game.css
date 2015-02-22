@@ -1,6 +1,73 @@
+* {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+input {
+    font-family: 'Play', sans-serif;
+}
+
+body {
+    padding-top: 70px;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+.title {
+    width: 50%;
+    float: left;
+}
+
+.new-player-container {
+    float: right;
+}
+
+#new-player {
+    width: 200px;
+}
+
 .score-table .player-col {
-    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 15px;
     float: left;
     width: 10%;
-    min-width: 150px;
+    min-width: 160px;
+    box-shadow: #888 1px 1px 1px 1px;
+}
+
+.score-table .player-col h3 {
+    margin: 0;
+}
+
+.score-table .player-col .score {
+    font-family: 'Play', sans-serif;
+    padding-left: 20px;
+    font-size: 28px;
+}
+
+.score-table .player-col .score.history {
+    font-size: 24px;
+}
+
+.score-table .player-col .glyphicon-plus {
+    padding-top: 6px;
+}
+
+.score-table .player-col input {
+    max-width: 100%;
+}
+
+.score-table .player-col hr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.score-table .player-col input.points {
+    max-width: calc(100% - 54px);
+}
+
+.score-table .player-col .points {
+    float: left;
 }
