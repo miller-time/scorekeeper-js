@@ -35,3 +35,24 @@ window.Player.prototype.setCustomAttribute = function(attribute, value) {
     }
     this.metadata[attribute] = value;
 };
+
+window.Player.prototype.toJSON = function() {
+    var j = {
+        name: this.name,
+        score: this.score,
+        scoreHistory: [],
+        metadata: this.metadata,
+        metadataKeys: this.metadataKeys
+    };
+    angular.forEach(this.scoreHistory, function(history) {
+        j.scoreHistory.push({
+            delta: history.delta,
+            score: history.score
+        });
+    });
+    return j;
+};
+
+window.Player.prototype.toString = function() {
+    return JSON.stringify(this.toJSON(), null, 4);
+};
