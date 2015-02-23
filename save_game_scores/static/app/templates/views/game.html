@@ -36,14 +36,14 @@
         <div ng-repeat="attr in player.metadataKeys" class="form-group">
             <label>{{attr}}</label>
             <edit-span span-contents="player.metadata[attr]"></edit-span>
-            <button class="btn btn-danger btn-xs" ng-click="deleteInfo(player, attr)">
+            <button class="btn btn-danger btn-xs pull-right" ng-click="deleteInfo(player, attr)">
                 <span class="glyphicon glyphicon-remove"></span>
             </button>
         </div>
         <button class="btn btn-default btn-sm" ng-click="addInfo(player)">
             <span class="glyphicon glyphicon-tags"></span>
         </button>
-        <button class="btn btn-danger btn-sm" ng-click="deletePlayer(player)">
+        <button class="btn btn-danger btn-sm pull-right" ng-click="deletePlayer(player)">
             <span class="glyphicon glyphicon-remove"></span>
         </button>
     </div>
