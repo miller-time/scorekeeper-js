@@ -19,24 +19,41 @@ angular.module('scorekeeperViews')
             $state.go('game');
         };
     })
-    .controller('ProfileController', function($scope, $rootScope, $state, savedGameApi) {
-        savedGameApi.getSavedGames().then(function(savedGames) {
-            $scope.savedGames = [];
-            angular.forEach(savedGames, function(savedGame) {
-                var game = new window.Game();
-                game.load(JSON.parse(savedGame.game_data));
-                game.gameId = savedGame.game_id;
-                game.updated = new Date(savedGame.updated);
-                game.playerList = game.players.map(function(player) {
-                    return player.name;
-                }).join(', ');
-                $scope.savedGames.push(game);
+    .controller('ProfileController', function($scope, $rootScope, $state, $timeout, savedGameApi, confirmModal) {
+        var loadGames = function() {
+            savedGameApi.getSavedGames().then(function(savedGames) {
+                $scope.savedGames = [];
+                angular.forEach(savedGames, function(savedGame) {
+                    var game = new window.Game();
+                    game.load(JSON.parse(savedGame.game_data));
+                    game.gameId = savedGame.game_id;
+                    game.updated = new Date(savedGame.updated);
+                    game.playerList = game.players.map(function(player) {
+                        return player.name;
+                    }).join(', ');
+                    $scope.savedGames.push(game);
+                });
             });
-        });
+        };
+        loadGames();
 
         $scope.playGame = function(game) {
             $rootScope.game = game;
             $state.go('game');
+        };
+
+        $scope.deleteGame = function(game) {
+            if (game.gameId) {
+                confirmModal('you want to delete this game').result.then(function() {
+                    savedGameApi.deleteGame(game.gameId).then(function() {
+                        $timeout(function() {
+                            loadGames();
+                        }, 750);
+                    });
+                });
+            } else {
+                throw 'Cannot delete game. It has no game ID! Please refresh the page and try again.';
+            }
         };
     })
     .controller('GameController', function($scope, $rootScope, $timeout, $modal, savedGameApi) {

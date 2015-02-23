@@ -36,5 +36,11 @@ angular.module('scorekeeperServices')
             });
         };
 
+        service.deleteGame = function(gameId) {
+            return $http.delete('/api/saved_games/' + gameId).error(function(response) {
+                throw 'Save Game delete error: ' + response;
+            });
+        };
+
         return service;
     });

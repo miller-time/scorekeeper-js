@@ -49,8 +49,17 @@ class SavedGameApi(MethodView):
         saved_game.put()
         return jsonify(message="Saved game successfully")
 
+    def delete(self, game_id):
+        saved_game = SavedGame.get_by_id(int(game_id))
+        user = users.get_current_user()
+        if not user or user.user_id() != saved_game.user_id:
+            return jsonify(error="Invalid user to delete this game"), 400
+
+        saved_game.key.delete()
+        return jsonify(message="Deleted")
+
 app.add_url_rule(
     '/api/saved_games/<game_id>',
     view_func=SavedGameApi.as_view('saved_game_api'),
-    methods=['PUT']
+    methods=['PUT', 'DELETE']
 )
