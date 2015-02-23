@@ -37,4 +37,26 @@ angular.module('scorekeeperModals')
                 }
             });
         };
+    })
+    .controller('NewGameModalController', function($scope, $modalInstance) {
+        $scope.newGame = {};
+
+        $scope.ok = function() {
+            $modalInstance.close($scope.newGame.title);
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss();
+        };
+    })
+    .factory('newGameModal', function($modal, $rootScope, $state) {
+        return function() {
+            $modal.open({
+                controller: 'NewGameModalController',
+                templateUrl: '/static/app/templates/modals/new-game.html'
+            }).result.then(function(gameTitle) {
+                $rootScope.game = new Game(gameTitle);
+                $state.go('game');
+            });
+        };
     });

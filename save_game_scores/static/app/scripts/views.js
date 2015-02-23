@@ -13,13 +13,12 @@ angular.module('scorekeeperViews')
             return new Date(input).toString();
         };
     })
-    .controller('HomeController', function($scope, $rootScope, $state) {
+    .controller('HomeController', function($scope, newGameModal) {
         $scope.newGame = function() {
-            $rootScope.game = new Game('Click here to set game title');
-            $state.go('game');
+            newGameModal();
         };
     })
-    .controller('ProfileController', function($scope, $rootScope, $state, $timeout, savedGameApi, confirmModal) {
+    .controller('ProfileController', function($scope, $rootScope, $state, $timeout, savedGameApi, confirmModal, newGameModal) {
         var loadGames = function() {
             savedGameApi.getSavedGames().then(function(savedGames) {
                 $scope.savedGames = [];
@@ -36,6 +35,10 @@ angular.module('scorekeeperViews')
             });
         };
         loadGames();
+
+        $scope.newGame = function() {
+            newGameModal();
+        };
 
         $scope.playGame = function(game) {
             $rootScope.game = game;

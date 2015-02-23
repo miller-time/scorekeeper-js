@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h3 class="modal-title">New Game</h3>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label for="game-title">Game Title</label>
+        <input type="text" id="game-title" ng-model="newGame.title" class="form-control">
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="!newGame.title || !newGame.title">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
