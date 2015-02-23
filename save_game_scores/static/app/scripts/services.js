@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('scorekeeperServices', []);
+angular.module('scorekeeperServices', [
+    'ngCookies'
+]);
 
 angular.module('scorekeeperServices')
     .factory('savedGameApi', function($http) {
@@ -15,6 +17,18 @@ angular.module('scorekeeperServices')
                 return savedGames;
             }, function(response) {
                 throw 'Error fetching saved games: ' + response.data;
+            });
+        };
+
+        service.getSavedGame = function(gameId) {
+            return $http.get('/api/saved_games/' + gameId).then(function(response) {
+                if (response.data.saved_game) {
+                    return response.data.saved_game;
+                } else {
+                    throw 'Error fetching saved game for id: ' + gameId;
+                }
+            }, function(response) {
+                throw 'Error fetching saved game: ' + response.data;
             });
         };
 
@@ -43,4 +57,22 @@ angular.module('scorekeeperServices')
         };
 
         return service;
+    })
+    .factory('gameCache', function($cookies, $window) {
+        return {
+            get: function(cacheKey) {
+                if ($window.localStorage) {
+                    return $window.localStorage.getItem(cacheKey);
+                } else {
+                    return $cookies[cacheKey];
+                }
+            },
+            set: function(cacheKey, val) {
+                if ($window.localStorage) {
+                    $window.localStorage.setItem(cacheKey, val);
+                } else {
+                    $cookies[cacheKey] = val;
+                }
+            }
+        };
     });

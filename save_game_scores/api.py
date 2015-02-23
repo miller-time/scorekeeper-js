@@ -35,6 +35,14 @@ app.add_url_rule(
 )
 
 class SavedGameApi(MethodView):
+    def get(self, game_id):
+        saved_game = SavedGame.get_by_id(int(game_id))
+        user = users.get_current_user()
+        if not user or user.user_id() != saved_game.user_id:
+            return jsonify(error="Invalid user for this game"), 400
+
+        return jsonify(saved_game=saved_game.to_dict())
+
     def put(self, game_id):
         saved_game = SavedGame.get_by_id(int(game_id))
         user = users.get_current_user()
@@ -61,5 +69,5 @@ class SavedGameApi(MethodView):
 app.add_url_rule(
     '/api/saved_games/<game_id>',
     view_func=SavedGameApi.as_view('saved_game_api'),
-    methods=['PUT', 'DELETE']
+    methods=['GET', 'PUT', 'DELETE']
 )
