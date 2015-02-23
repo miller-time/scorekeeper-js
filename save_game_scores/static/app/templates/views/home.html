@@ -1,5 +1,8 @@
 <p>
     <button class="btn btn-lg btn-success" ng-click="newGame()">New Game</button>
+    <a ng-if="game" class="btn btn-lg btn-primary" ui-sref="game">
+        Continue {{game.title}}
+    </a>
 </p>
 <p>
     <h2>

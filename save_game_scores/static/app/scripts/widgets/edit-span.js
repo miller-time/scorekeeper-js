@@ -1,7 +1,5 @@
 'use strict';
 
-angular.module('scorekeeperWidgets', []);
-
 angular.module('scorekeeperWidgets')
     .controller('EditSpanController', function($scope) {
         $scope.mode = 'view';

@@ -13,12 +13,28 @@ angular.module('scorekeeperViews')
             return new Date(input).toString();
         };
     })
-    .controller('HomeController', function($scope, newGameModal) {
+    .controller('HomeController', function($scope, $rootScope, newGameModal, gameCache, savedGameApi) {
+        $scope.game = $rootScope.game;
+
+        if (!$scope.game) {
+            var cachedGameId = gameCache.get('gameId');
+            if (cachedGameId) {
+                savedGameApi.getSavedGame(cachedGameId).then(function(savedGame) {
+                    $scope.game = new Game();
+                    $scope.game.load(JSON.parse(savedGame.game_data));
+                    $scope.game.gameId = savedGame.game_id;
+                    $rootScope.game = $scope.game;
+                });
+            }
+        }
+
         $scope.newGame = function() {
             newGameModal();
         };
     })
     .controller('ProfileController', function($scope, $rootScope, $state, $timeout, savedGameApi, confirmModal, newGameModal) {
+        $scope.game = $rootScope.game;
+
         var loadGames = function() {
             savedGameApi.getSavedGames().then(function(savedGames) {
                 $scope.savedGames = [];
@@ -70,12 +86,14 @@ angular.module('scorekeeperViews')
                     $scope.game = new Game();
                     $scope.game.load(JSON.parse(savedGame.game_data));
                     $scope.game.gameId = savedGame.game_id;
+                    $rootScope.game = $scope.game;
                 });
             }
         }
 
         if (!$scope.game && !cachedGameId && !cachedGamePromise) {
             $scope.game = new Game('Click here to set game title');
+            $rootScope.game = $scope.game;
         }
 
         $scope.newPlayer = {};
