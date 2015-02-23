@@ -15,6 +15,10 @@ h1 {
     margin-top: 10px;
 }
 
+.edit-span {
+    cursor: pointer;
+}
+
 .title {
     width: 50%;
     float: left;
@@ -88,6 +92,15 @@ h1 {
 
 .score-table .player-col input {
     max-width: 100%;
+}
+
+.score-table .player-col .custom .edit-span {
+    display: inline-block;
+    width: calc(100% - 55px);
+}
+
+.score-table .player-col .custom .edit-span-container input {
+    max-width: calc(100% - 55px);
 }
 
 .score-table .player-col hr {

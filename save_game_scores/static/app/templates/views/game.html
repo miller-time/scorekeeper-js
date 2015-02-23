@@ -33,7 +33,7 @@
             </button>
         </div>
         <hr>
-        <div ng-repeat="attr in player.metadataKeys" class="form-group">
+        <div ng-repeat="attr in player.metadataKeys" class="form-group custom">
             <label>{{attr}}</label>
             <edit-span span-contents="player.metadata[attr]"></edit-span>
             <button class="btn btn-danger btn-xs pull-right" ng-click="deleteInfo(player, attr)">
