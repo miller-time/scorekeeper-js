@@ -36,6 +36,9 @@
         <div ng-repeat="attr in player.metadataKeys" class="form-group">
             <label>{{attr}}</label>
             <edit-span span-contents="player.metadata[attr]"></edit-span>
+            <button class="btn btn-danger btn-xs" ng-click="deleteInfo(player, attr)">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
         </div>
         <button class="btn btn-default btn-sm" ng-click="addInfo(player)">
             <span class="glyphicon glyphicon-tags"></span>

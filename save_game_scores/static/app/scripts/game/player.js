@@ -36,6 +36,11 @@ window.Player.prototype.setCustomAttribute = function(attribute, value) {
     this.metadata[attribute] = value;
 };
 
+window.Player.prototype.removeCustomAttribute = function(attribute) {
+    this.metadata[attribute] = undefined;
+    this.metadataKeys.splice(this.metadataKeys.indexOf(attribute), 1);
+};
+
 window.Player.prototype.toJSON = function() {
     var j = {
         name: this.name,

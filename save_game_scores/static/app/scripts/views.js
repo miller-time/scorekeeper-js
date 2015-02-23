@@ -88,6 +88,10 @@ angular.module('scorekeeperViews')
             });
         };
 
+        $scope.deleteInfo = function(player, attr) {
+            player.removeCustomAttribute(attr);
+        };
+
         $scope.deletePlayer = function(player) {
             confirmModal('remove this player').result.then(function() {
                 $scope.game.players.splice($scope.game.players.indexOf(player), 1);
