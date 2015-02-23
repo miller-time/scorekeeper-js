@@ -44,7 +44,7 @@ angular.module('scorekeeperViews')
 
         $scope.deleteGame = function(game) {
             if (game.gameId) {
-                confirmModal('you want to delete this game').result.then(function() {
+                confirmModal('delete this game').result.then(function() {
                     savedGameApi.deleteGame(game.gameId).then(function() {
                         $timeout(function() {
                             loadGames();
@@ -56,7 +56,7 @@ angular.module('scorekeeperViews')
             }
         };
     })
-    .controller('GameController', function($scope, $rootScope, $timeout, $modal, savedGameApi) {
+    .controller('GameController', function($scope, $rootScope, $timeout, $modal, savedGameApi, confirmModal) {
         $scope.game = $rootScope.game || new Game('Click here to set game title');
 
         $scope.newPlayer = {};
@@ -85,6 +85,12 @@ angular.module('scorekeeperViews')
                 }
             }).result.then(function(attrVal) {
                 player.setCustomAttribute(attrVal[0], attrVal[1]);
+            });
+        };
+
+        $scope.deletePlayer = function(player) {
+            confirmModal('remove this player').result.then(function() {
+                $scope.game.players.splice($scope.game.players.indexOf(player), 1);
             });
         };
 

@@ -75,6 +75,7 @@ h1 {
     font-family: 'Play', sans-serif;
     padding-left: 20px;
     font-size: 28px;
+    cursor: pointer;
 }
 
 .score-table .player-col .score.history {
