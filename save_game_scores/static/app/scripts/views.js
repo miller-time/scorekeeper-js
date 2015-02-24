@@ -161,4 +161,15 @@ angular.module('scorekeeperViews')
                 }
             }, 750);
         }, true);
+    })
+    .controller('SnapshotController', function($scope, $stateParams, savedGameApi) {
+        if ($stateParams.gameId) {
+            savedGameApi.getSavedGame($stateParams.gameId).then(function(savedGame) {
+                $scope.game = new Game();
+                $scope.game.load(JSON.parse(savedGame.game_data));
+                $scope.game.gameId = savedGame.gameId;
+            });
+        } else {
+            $state.go('home');
+        }
     });

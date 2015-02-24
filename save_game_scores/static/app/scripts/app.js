@@ -24,6 +24,10 @@ angular.module('scorekeeper', [
         url: '/game',
         controller: 'GameController',
         templateUrl: '/static/app/templates/views/game.html'
+    }).state('snapshot', {
+        url: '/snapshot/:gameId',
+        controller: 'SnapshotController',
+        templateUrl: '/static/app/templates/views/snapshot.html'
     });
 
 });
