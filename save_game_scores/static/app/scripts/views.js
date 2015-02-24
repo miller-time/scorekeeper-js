@@ -87,6 +87,10 @@ angular.module('scorekeeperViews')
                     $scope.game.load(JSON.parse(savedGame.game_data));
                     $scope.game.gameId = savedGame.game_id;
                     $rootScope.game = $scope.game;
+
+                    angular.forEach($scope.game.players, function(player) {
+                        player.collapseHistory = true;
+                    });
                 });
             }
         }
@@ -168,6 +172,10 @@ angular.module('scorekeeperViews')
                 $scope.game = new Game();
                 $scope.game.load(JSON.parse(savedGame.game_data));
                 $scope.game.gameId = savedGame.gameId;
+
+                angular.forEach($scope.game.players, function(player) {
+                    player.collapseHistory = true;
+                });
             });
         } else {
             $state.go('home');
