@@ -139,6 +139,16 @@ angular.module('scorekeeperViews')
             });
         };
 
+        $scope.shareGame = function() {
+            if ($scope.game && $scope.game.gameId) {
+                var url = 'http://save-game-scores.appspot.com/#/snapshot/' + $scope.game.gameId;
+                FB.ui({
+                    method: 'share',
+                    href: url,
+                }, function(response){});
+            }
+        };
+
         /*
             Auto-save
             ---------
