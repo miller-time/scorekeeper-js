@@ -33,19 +33,26 @@
             </button>
         </div>
         <hr>
-        <div ng-repeat="attr in player.metadataKeys" class="form-group custom">
-            <label>{{attr}}</label>
-            <edit-span span-contents="player.metadata[attr]"></edit-span>
+        <div ng-repeat="attr in player.metadataKeys" class="form-group custom-container">
+            <div class="custom" tooltip-html-unsafe="{{getAttrToolTip(player, attr)}}" tooltip-popup-delay="250">
+                <label>{{attr}}</label>
+                <edit-span span-contents="player.metadata[attr]"></edit-span>
+            </div>
             <button class="btn btn-danger btn-xs pull-right" ng-click="deleteInfo(player, attr)">
                 <span class="glyphicon glyphicon-remove"></span>
             </button>
         </div>
-        <button class="btn btn-default btn-sm" ng-click="addInfo(player)">
-            <span class="glyphicon glyphicon-tags"></span>
-        </button>
-        <button class="btn btn-danger btn-sm pull-right" ng-click="deletePlayer(player)">
-            <span class="glyphicon glyphicon-remove"></span>
-        </button>
+
+        <div class="clearfix"></div>
+
+        <div class="player-controls">
+            <button class="btn btn-default btn-sm" ng-click="addInfo(player)">
+                <span class="glyphicon glyphicon-tags"></span>
+            </button>
+            <button class="btn btn-danger btn-sm pull-right" ng-click="deletePlayer(player)">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
     </div>
 </div>
 <a href="#" class="share-button" ng-if="game.gameId" ng-click="shareGame()">

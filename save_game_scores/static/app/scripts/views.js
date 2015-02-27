@@ -149,6 +149,10 @@ angular.module('scorekeeperViews')
             }
         };
 
+        $scope.getAttrToolTip = function(player, attr) {
+            return '<b>' + attr + ' :</b> ' + player.metadata[attr];
+        };
+
         /*
             Auto-save
             ---------

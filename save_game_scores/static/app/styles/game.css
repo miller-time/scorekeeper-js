@@ -106,13 +106,24 @@ h1 {
     max-width: 100%;
 }
 
-.score-table .player-col .custom .edit-span {
-    display: inline-block;
-    width: calc(100% - 55px);
+.score-table .player-col .custom {
+    width: calc(100% - 27px);
+    float: left;
 }
 
-.score-table .player-col .custom .edit-span-container input {
-    max-width: calc(100% - 55px);
+.score-table .player-col .custom label {
+    width: 50%;
+    float: left;
+}
+
+.score-table .player-col .custom .edit-span-container {
+    width: 50%;
+    float: left;
+}
+
+.score-table .player-col .custom .edit-span {
+    display: block;
+    overflow: hidden;
 }
 
 .score-table .player-col hr {
@@ -126,4 +137,8 @@ h1 {
 
 .score-table .player-col .points {
     float: left;
+}
+
+.player-controls {
+    margin-top: 10px;
 }
