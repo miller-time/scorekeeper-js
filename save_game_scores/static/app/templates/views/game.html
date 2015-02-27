@@ -1,5 +1,4 @@
 <h1 class="title"><edit-span span-contents="game.title"></edit-span></h1>
-<div class="share"><a href="#" ng-click="shareGame()">Share</a></div>
 <div ng-if="game" class="new-player-container">
     <input type="text"
         id="new-player"
@@ -49,3 +48,6 @@
         </button>
     </div>
 </div>
+<a href="#" class="share-button" ng-if="game.gameId" ng-click="shareGame()">
+    <img src="/static/app/images/fb-share.png">
+</a>

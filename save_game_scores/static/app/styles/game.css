@@ -46,6 +46,12 @@ h1 {
     box-shadow: #888 1px 1px 1px 1px;
 }
 
+.share-button {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
+
 @media (max-width: 600px) {
     .title {
         width: 100%;
@@ -68,6 +74,12 @@ h1 {
     .score-table .player-col {
         padding: 9px;
         min-width: 153px;
+    }
+
+    .share-button {
+        position: static;
+        float: right;
+        margin-top: 15px;
     }
 }
 
