@@ -35,3 +35,11 @@ window.Game.prototype.load = function(json) {
         self.players.push(player);
     });
 };
+
+window.Game.prototype.scoreSummary = function() {
+    var scores = [];
+    angular.forEach(this.players, function(player) {
+        scores.push(player.name + ': ' + player.score);
+    });
+    return scores.join(', ');
+};

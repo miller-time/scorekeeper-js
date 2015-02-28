@@ -1,3 +1,8 @@
+<!-- metaProperty directive will move these to the head -->
+<meta meta-property property="og:url" content="{{getUrl()}}">
+<meta meta-property property="og:title" content="{{getTitle()}}">
+<meta meta-property property="og:description" content="{{getDescription()}}">
+
 <h1 class="title"><edit-span span-contents="game.title"></edit-span></h1>
 <div ng-if="game" class="new-player-container">
     <input type="text"

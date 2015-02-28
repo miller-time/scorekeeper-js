@@ -139,9 +139,27 @@ angular.module('scorekeeperViews')
             });
         };
 
-        $scope.shareGame = function() {
+        $scope.getUrl = function() {
             if ($scope.game && $scope.game.gameId) {
-                var url = 'http://save-game-scores.appspot.com/#/snapshot/' + $scope.game.gameId;
+                return 'http://save-game-scores.appspot.com/#/snapshot/' + $scope.game.gameId;
+            }
+        };
+
+        $scope.getTitle = function() {
+            if ($scope.game) {
+                return $scope.game.title;
+            }
+        };
+
+        $scope.getDescription = function() {
+            if ($scope.game) {
+                return $scope.game.scoreSummary();
+            }
+        };
+
+        $scope.shareGame = function() {
+            var url = $scope.getUrl();
+            if (url) {
                 FB.ui({
                     method: 'share',
                     href: url,
